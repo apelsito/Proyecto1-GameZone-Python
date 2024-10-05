@@ -1,5 +1,5 @@
 #No quiero que se suban los ipynb (los jupiter)
-notebooks/
+#notebooks/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
