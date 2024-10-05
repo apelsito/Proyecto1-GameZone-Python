@@ -1,5 +1,7 @@
 import random
 #Voy a hacer 10 categorías
+import pyfiglet
+from colorama import Fore, Style, init
 
 historia = [{"¿En qué año comenzó la Primera Guerra Mundial?" : {"Respuestas":{"1914":True,"1918":False,"1939":False,"1945":False}}},
     {"¿Quién fue el primer presidente de los Estados Unidos?": {"Respuestas": {"George Washington": True,"Abraham Lincoln": False,"Thomas Jefferson": False,"John Adams": False}}},
@@ -130,35 +132,85 @@ arte = [
     {"¿Qué movimiento artístico surgió como una reacción a la Primera Guerra Mundial?" : {"Respuestas": {"Dadaísmo": True, "Impresionismo": False, "Romanticismo": False, "Futurismo": False}}}
 ]
 
-def random_question(categoria_lista):
-    n = random.randrange(0,10,1)
-    preguntita = categoria_lista[n]
+def random_number(categoria):
+    numero_random = random.randrange(0,10,1)
+    return str(numero_random)
+
+def random_question(categoria_lista,n):
+    preguntita = categoria_lista[int(n)]
     return preguntita
 
 def obtener_preguntas(lista_preguntas):
     pregunta = list(lista_preguntas)[0]
     return pregunta
 
-def obtener_respuestas_y_(lista_respuestas):
-    op = list(lista_respuestas.values())[0] #Saco el conjunto Respuestas
-    r1 = list(op.values())[0]
-    return r1
+def bool_respuesta(respuesta,pregunta):
+    answers = respuesta[pregunta]["Respuestas"]
+    return answers
 
-def bool_respuesta(respuesta):
-    resp1 = list(respuesta.values())[0]
-    #resp2 = list(respuesta.values())[1]
-    #resp3 = list(respuesta.values())[2]
-    #resp4 = list(respuesta.values())[3]
-    #res = [resp1,resp2,resp3,resp4]
-    return resp1
 
-def hacer_preguntas(pregunta,respuestas):
-    
-    respuesta = input(f"{pregunta}")
+def preguntar(preguntita):
+    go = True
+    aciertos = 0
+    fallos = 0
+    n_pregunta = 0
+    #Iniciar Título
+    init(autoreset=True)
+    # Crear el texto en estilo grande con pyfiglet
+    titulo = pyfiglet.figlet_format("PREGUNTADOS", font="slant")
+    print(Fore.GREEN + titulo)
+    print("Bienvenido a preguntados!:")
+    print("Las reglas son simples, responde a las preguntas correctamente y obtendrás un punto!")
+    print("Hay 10 preguntas, para salir si te aburres o rindes, pulsa stop.")
+    print("Tu respuesta debe ser igual que las opciones dadas por ej: Gabriel García Márquez")
+    input(Fore.YELLOW + "Estas listo?, Presiona Cualquier Tecla para Jugar!")
+    print("")
+
+    while n_pregunta < 10:
+        i = 0
+        try:      
+            while i < 10:
+                answers = list(respuestas[n_pregunta].keys())
+                r1 = answers[0]
+                r2 = answers[1]
+                r3 = answers[2]
+                r4 = answers[3]
+                question = input(Fore.LIGHTCYAN_EX +f"Categoría {nombre_categorias[n_pregunta]}\n"+ f"Pregunta {n_pregunta+1}: {preguntita[n_pregunta]}:"+Fore.RESET+ f"\na) {r1}\nb) {r2}\nc) {r3}\nd) {r4}\nIntroduce tu Respuesta: ")
+                if question.lower() == "stop":
+                    i = 12
+                    n_pregunta = 14
+                else:    
+                    valor = respuestas[n_pregunta][question]      
+                    if valor == True:
+                        print(Fore.GREEN + f"Acertaste!")
+                        print("")
+                        aciertos += 1
+                        n_pregunta += 1
+                        i += 1
+                    else:
+                        print(Fore.RED + f"Fallaste!")
+                        print("")
+                        fallos += 1
+                        n_pregunta += 1
+                        i += 1
+                  
+        except :
+                print(f"No es una respuesta válida, vuelve a introducirla")
+    if question.lower() == "stop":
+        print("Has salido del Juego, chao!")
+        input("Presiona cualquier tecla para salir:")
+    else:
+        fin = pyfiglet.figlet_format("PREGUNTADOS", font="slant")
+        print(Fore.GREEN + titulo)
+        print(f"")
+        print(f"Terminamos!, Has acertado {aciertos} preguntas, y has fallado {fallos} preguntas, tu puntuación es de: {aciertos}/10")
+        input("Presiona cualquier tecla para salir:")
     return
-categorias = [historia,series,cine,musica,ciencia,deportes,geografia,literatura,tecnologia,arte]
-preguntas_seleccionadas = list(map(random_question,categorias)) #Escoger 10 preguntas aleatorias y guardarlas en una lista
-preguntas = list(map(obtener_preguntas,preguntas_seleccionadas)) #Saca la Pregunta en formato String
-respuestas = list(map(bool_respuesta,preguntas_seleccionadas))#Saca cada diccionario de respuestas
 
-print(list(map(bool_respuesta,respuestas)))#Esto me da una lista de listas de las respuestas 
+categorias = [historia,series,cine,musica,ciencia,deportes,geografia,literatura,tecnologia,arte]
+nombre_categorias = ["Historia","Series","Cine","Música","Ciencia","Deportes","Geografía","Literatura","Tecnología","Arte"]
+selecciones = list(map(random_number,categorias))
+preguntas_seleccionadas = list(map(random_question,categorias,selecciones)) #Escoger 10 preguntas aleatorias y guardarlas en una lista
+preguntas = list(map(obtener_preguntas,preguntas_seleccionadas)) #Saca la Pregunta en formato String
+respuestas = list(map(bool_respuesta,preguntas_seleccionadas,preguntas))#Saca cada diccionario de respuestas
+preguntar(preguntas)
