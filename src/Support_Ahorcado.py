@@ -81,14 +81,11 @@ class Ahorcado:
         for i, pos in enumerate(posiciones):
             texto_lista[pos * 2] = lista_encontradas[i]  # Al tener los guiones con espacio, hay que tener en cuenta el doble
         return "".join(texto_lista)
-
-
-    def menu_bienvenida(self):
-        textostop = pyfiglet.figlet_format(f"AHORCADO")
-        print(Fore.MAGENTA + textostop)
-        return
         
     def ahorcado(self):
+        textogame = pyfiglet.figlet_format(f"GAME ON!")
+        print(Fore.CYAN + textogame + Fore.RESET)
+        print("")
         n_random = random.randrange(0, len(self.palabras_ahorcado))
         palabra_elegida = self.palabras_ahorcado[n_random]
         longitud_palabra_elegida = len(palabra_elegida)
@@ -98,14 +95,15 @@ class Ahorcado:
         aciertos = 0
         letras_acertadas = []
         letras_erroneas = []
-        print(Fore.YELLOW + f"La palabra tiene {longitud_palabra_elegida} letras.")
+        print(Fore.YELLOW + f"La palabra tiene {longitud_palabra_elegida} letras."+Fore.RESET)
 
         while errores < len(self.estados) - 1:
             print(self.estados[errores])
             print(texto + "\n")
             print(Fore.RED + f"Letras erróneas: {letras_erroneas}")
             print(f"Errores restantes: {5-errores}")
-            entrada = input(Fore.YELLOW + "Escribe una letra: ").lower()
+            entrada = input(Fore.YELLOW + "Escribe una letra: "+Fore.RESET)
+            entrada = entrada.lower()
             if entrada.lower() == "stop":
                 textostop = pyfiglet.figlet_format(f"STOP")
                 print(Fore.RED + textostop)
@@ -120,36 +118,55 @@ class Ahorcado:
                 lista_entrada = self.obtener_lista_entradas(entrada, veces_encontrada)
                 texto = self.reemplazar_texto(texto, lista_entrada, pos_encontradas)
                 aciertos += veces_encontrada
-                print(Fore.GREEN + f"Correcto! '{entrada}' está en las posiciones: {pos_encontradas}")
+                print(Fore.GREEN + f"Correcto! '{entrada}' está en las posiciones: {pos_encontradas}"+Fore.RESET)
             elif entrada in palabra_elegida and entrada in letras_acertadas:
-                print(Fore.YELLOW + f"Correcto!, pero ya la habías puesto.")
+                print(Fore.YELLOW + f"Correcto!, pero ya la habías puesto."+Fore.RESET)
 
             else:
-                print(Fore.RED + f"Incorrecto! '{entrada}' no está en la palabra.")
+                print(Fore.RED + f"Incorrecto! '{entrada}' no está en la palabra."+Fore.RESET)
                 letras_erroneas.append(entrada)
                 errores += 1
 
             if aciertos == longitud_palabra_elegida:
                 textowin = pyfiglet.figlet_format(f"GANAS")
                 print(Fore.GREEN + textowin)
-                print(Fore.MAGENTA + f"¡Felicidades! Has adivinado la palabra: {palabra_elegida}")
+                print(Fore.MAGENTA + f"¡Felicidades! Has adivinado la palabra: {palabra_elegida}"+Fore.RESET)
                 print("")
-                repetir = input(Fore.YELLOW + f"Quieres jugar otra vez?")
+                repetir = input(Fore.YELLOW + f"Quieres jugar otra vez? Si / No: "+Fore.RESET)
+                print(Fore.RESET)
                 if repetir.lower() == "si":
                     self.ahorcado()
                     errores = 0
                     aciertos = 0
                 else:
+                    print(Fore.MAGENTA + f"Hasta Pronto!")
+                    input(Fore.YELLOW + f"Pulsa cualquier tecla para salir."+Fore.RESET)
                     break
         else:
             textowin = pyfiglet.figlet_format(f"PIERDES")
             print(Fore.RED + textowin)
-            print(Fore.YELLOW + f"¡Perdiste! La palabra era: {palabra_elegida}")
+            print(Fore.YELLOW + f"¡Perdiste! La palabra era: {palabra_elegida}"+Fore.RESET)
             print("")
-            repetir = input(Fore.YELLOW + f"Quieres jugar otra vez? Si / No")
+            repetir = input(Fore.YELLOW + f"Quieres jugar otra vez? Si / No: "+Fore.RESET)
             if repetir.lower() == "si":
                 self.ahorcado()
                 errores = 0
                 aciertos = 0
             else:
-                pass
+                print(Fore.MAGENTA + f"Hasta Pronto!")
+                input(Fore.YELLOW + f"Pulsa cualquier tecla para salir."+Fore.RESET)
+
+    def menu(self):
+        textostop = pyfiglet.figlet_format(f"AHORCADO")
+        print(Fore.MAGENTA + textostop)
+        print(Fore.YELLOW + f"Bienvenido al Ahorcado!")
+        print(Fore.RESET + f"Las reglas son sencillas:")
+        print(f"1º Se te dirá la longitud de la palabra a adivinar")
+        print(f"Deberás escribir una letra, si está bien se añadirá")
+        print(f"Si no está bien, empezaremos a ahorcar a Timmy :/")
+        print(f"Tienes 5 intentos antes de que Timmy se duerma.")
+        print(f"Si pones varias letras o la palabra completa, te diremos si está bien o mal")
+        print(f"Si te aburres escribe 'stop' y listo")
+        input(Fore.YELLOW + f"Estás listo? pulsa cualquier tecla para empezar"+Fore.RESET)
+        self.ahorcado()
+        return

@@ -4,5 +4,5 @@ from src.Support_Ahorcado import Ahorcado
 if __name__ == "__main__":
     #juego1 = Preguntados().preguntar()
     #juego2 = PiedraPapelTijeraLagartoSpock().batalla()
-    juego3 = Ahorcado().menu_bienvenida()
+    juego3 = Ahorcado().menu()
     juego3
