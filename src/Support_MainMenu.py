@@ -11,6 +11,8 @@ from src.SupportTresEnRaya import TresEnRaya
 class MenuPrincipal: 
     def __init__(self) -> None:
         self.hola = 0
+        self.animacion_activa = True
+        self.input_detectado = False
         self.frames = [
             Fore.MAGENTA + r'''
     O       O      ██████   █████  ███    ███ ███████     ███████  ██████  ███    ██ ███████      O       O
@@ -63,35 +65,34 @@ class MenuPrincipal:
             '''
         ]
 
-        
-    def limpiar_pantalla(self):
-        # Limpiar la pantalla (compatible con Windows y Unix)
-        os.system('cls' if os.name == 'nt' else 'clear')
-
     def limpiar_pantalla(self):
         # Limpiar la pantalla (compatible con Windows y Unix)
         os.system('cls' if os.name == 'nt' else 'clear')
 
     def reproducir_animacion(self):
-        while True:
+        while self.animacion_activa:
             for frame in self.frames:
+                if not self.animacion_activa:
+                    break  # Salir del bucle si se desactiva la animación
                 self.limpiar_pantalla()
                 print(frame)
                 # Mostrar el texto del menú
-                print(Fore.YELLOW + "Bienvenido a la" + Fore.MAGENTA + " GAME" + Fore.CYAN + " ZONE"+ Fore.YELLOW + " A que quieres jugar hoy?")
-                print(Fore.RESET + "1º El Ahorcado.")
-                print("2º Tres en Raya.")
-                print("3º Piedra, Papel, Tijera, Lagarto, Spock")
-                print("4º Preguntados")
-                print(Fore.MAGENTA + "Introduce el número del juego que quieres jugar" + Fore.RESET)
-                print(Fore.RED + f"NO PULSE 5, excepto si quieres ver algo bonito :)")
+                print(Fore.YELLOW + "Bienvenido a la" + Fore.MAGENTA + " GAME" + Fore.CYAN + " ZONE" + Fore.YELLOW + " Pulsa Enter para comenzar.")
                 time.sleep(0.35)  # Controla la velocidad de la animación
 
-    
+    def esperar_input(self):
+        input("")  # Espera la pulsación de Enter
+        self.input_detectado = True
+        self.detener_animacion()  # Detiene la animación cuando el usuario pulsa Enter
+
+    def detener_animacion(self):
+        # Detener la animación
+        self.animacion_activa = False
+
     #Haz Zoom Out
     #Jeancha,no estarás como ganador de Masterchef, pero estás en ASCII en mi código
     def jeancha(self):
-        self.hola = r'''
+        self.hola = [ r'''
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -257,17 +258,47 @@ class MenuPrincipal:
     ............................................/%%%%&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&&&&&&&&&&&&&&/..........................................
     ............................................(%%&&&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&&&&&&&&&&&&&/..........................................
     ...........................................,#%%&&&&&&&&&&&&&&&&&&&&&@&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&&&&&&&&&&&&/..........................................
-    '''
+    ''']
         return self.hola[0]
     
     def main_menu(self):
         # Inicia la animación en un hilo separado
         animacion_thread = threading.Thread(target=self.reproducir_animacion, daemon=True)
         animacion_thread.start()
+
+        # Iniciar otro hilo para esperar la entrada del usuario
+        input_thread = threading.Thread(target=self.esperar_input)
+        input_thread.start()
+
+        # Esperar a que el usuario pulse Enter (detendrá la animación)
+        input_thread.join()
+
+        # Una vez que se presiona Enter, pasa a jugar
+        self.jugar()
+
+        return
+
+    
+    def jugar(self):
+        self.limpiar_pantalla()
+        titulo = pyfiglet.figlet_format("GAME ZONE", font="slant")
+        print(Fore.MAGENTA + titulo)
+        print("")
+        print(Fore.RESET + "1º El Ahorcado.")
+        print("2º Tres en Raya.")
+        print("3º Piedra, Papel, Tijera, Lagarto, Spock")
+        print("4º Preguntados")
+        print("Escribe salir para Salir.")
+        print(Fore.MAGENTA + "Introduce el número del juego que quieres jugar" + Fore.RESET)
+        print(Fore.RED + f"NO PULSE 5, excepto si quieres ver algo bonito :)"+Fore.RESET)
+        
         # Esperar al usuario para comenzar el juego
         check = 0
         while check == 0:
             entra = input()  # El programa espera la entrada del usuario aquí
+            if entra.lower() == "salir":
+                check = 1
+                break
             try:
                 entra = int(entra)
                 check = 1
@@ -276,24 +307,37 @@ class MenuPrincipal:
                 check = 0
             
             if entra == 1:
-                print(Fore.MAGENTA + f"Has elegido: " + Fore.YELLOW + "El Ahorcado"+Fore.RESET)
+                print(Fore.MAGENTA + f"Has elegido: " + Fore.YELLOW + "El Ahorcado" + Fore.RESET)
                 input(f"Presiona cualquier tecla para ejecutar el juego: ")
                 self.limpiar_pantalla()
-                Ahorcado.menu()
+                jugar = Ahorcado().menu()
+                jugar
+                self.main_menu()            
             elif entra == 2:
-                print(Fore.MAGENTA + f"Has elegido: " + Fore.YELLOW + "Tres en Raya"+Fore.RESET)
+                print(Fore.MAGENTA + f"Has elegido: " + Fore.YELLOW + "Tres en Raya" + Fore.RESET)
                 input(f"Presiona cualquier tecla para ejecutar el juego: ")
+                jugar = TresEnRaya().iniciarTTT()
+                jugar
+                self.main_menu()            
             elif entra == 3:
-                print(Fore.MAGENTA + f"Has elegido: " + Fore.YELLOW + "Piedra, Papel, Tijera, Lagarto, Spock."+Fore.RESET)
+                print(Fore.MAGENTA + f"Has elegido: " + Fore.YELLOW + "Piedra, Papel, Tijera, Lagarto, Spock." + Fore.RESET)
                 input(f"Presiona cualquier tecla para ejecutar el juego: ")
+                jugar = PiedraPapelTijeraLagartoSpock().batalla()
+                jugar
+                self.main_menu()            
             elif entra == 4:
-                print(Fore.MAGENTA + f"Has elegido: " + Fore.YELLOW + "Preguntados"+Fore.RESET)
+                print(Fore.MAGENTA + f"Has elegido: " + Fore.YELLOW + "Preguntados" + Fore.RESET)
                 input(f"Presiona cualquier tecla para ejecutar el juego: ")
+                jugar = Preguntados().preguntar()
+                jugar
+                self.main_menu()                
+            
             elif entra == 5:
                 titulo = pyfiglet.figlet_format("JEANCHA EN MASTERCHEF", font="slant")
                 print(Fore.MAGENTA + titulo)
                 print("")
                 print(self.jeancha())
-                
+                print("Aparece Jeancha en mi código, se le ve mejor desde el lado derecho, pulsa enter para salir")
+                self.main_menu()
 
         return

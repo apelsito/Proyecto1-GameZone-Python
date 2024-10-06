@@ -118,7 +118,7 @@ class PiedraPapelTijeraLagartoSpock():
                     textowin = pyfiglet.figlet_format(f"RESULTADOS")
                     print(Fore.GREEN + textowin)
                     print(Fore.YELLOW + f"De {rondas} has ganado {wins} y has perdido {loses}, tu puntuación es de {wins}/{rondas}")
-                    input(Fore.CYAN + f"Pulsa cualquier tecla para salir del juego.")
+                    print(Fore.CYAN + f"Pulsa cualquier tecla para salir del juego.")
 
                 except:
                     print(f"Valor incorrecto, reinténtalo")

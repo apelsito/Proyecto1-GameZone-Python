@@ -140,7 +140,7 @@ class Ahorcado:
                     aciertos = 0
                 else:
                     print(Fore.MAGENTA + f"Hasta Pronto!")
-                    input(Fore.YELLOW + f"Pulsa cualquier tecla para salir."+Fore.RESET)
+                    print(Fore.YELLOW + f"Pulsa cualquier tecla para salir."+Fore.RESET)
                     break
         else:
             textowin = pyfiglet.figlet_format(f"PIERDES")
@@ -154,7 +154,7 @@ class Ahorcado:
                 aciertos = 0
             else:
                 print(Fore.MAGENTA + f"Hasta Pronto!")
-                input(Fore.YELLOW + f"Pulsa cualquier tecla para salir."+Fore.RESET)
+                print(Fore.YELLOW + f"Pulsa cualquier tecla para salir."+Fore.RESET)
 
     def menu(self):
         textostop = pyfiglet.figlet_format(f"AHORCADO")

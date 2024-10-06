@@ -444,10 +444,10 @@ class Preguntados:
             print(Fore.RED + fin)
             print(f"")
             print("Has salido del Juego, chao!")
-            input("Presiona cualquier tecla para salir:")
+            print("Presiona cualquier tecla para salir:")
         else:
             fin = pyfiglet.figlet_format(f"RESULTADOS\n{aciertos} / 10", font="slant")
             print(Fore.GREEN + fin)
             print(f"")
             print(f"Terminamos!, Has acertado {aciertos} preguntas, y has fallado {fallos} preguntas, tu puntuación es de: {aciertos}/10")
-            input("Presiona cualquier tecla para salir:")
+            print("Presiona cualquier tecla para salir:")

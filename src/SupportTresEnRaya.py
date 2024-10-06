@@ -171,7 +171,7 @@ class TresEnRaya:
                                             self.partida()
                                         else:
                                             print("Hasta Pronto!")
-                                            input("Presiona Cualquier tecla para continuar")
+                                            print("Presiona Cualquier tecla para continuar")
                                             break 
                                         break                                  
                                 else:
@@ -186,7 +186,7 @@ class TresEnRaya:
                                         self.partida()
                                     else:
                                         print("Hasta Pronto!")
-                                        input("Presiona Cualquier tecla para continuar")
+                                        print("Presiona Cualquier tecla para continuar")
                                         break
                                     break
                             else:
@@ -202,7 +202,7 @@ class TresEnRaya:
                                     self.partida()
                                 else:
                                     print("Hasta Pronto!")
-                                    input("Presiona Cualquier tecla para continuar")
+                                    print("Presiona Cualquier tecla para continuar")
                                     break
                                 break
                         else:
@@ -217,7 +217,7 @@ class TresEnRaya:
                                 self.partida()
                             else:
                                 print("Hasta Pronto!")
-                                input("Presiona Cualquier tecla para continuar")
+                                print("Presiona Cualquier tecla para continuar")
                                 break
                             break
                     else:
@@ -232,7 +232,7 @@ class TresEnRaya:
                             self.partida()
                         else:
                             print("Hasta Pronto!")
-                            input("Presiona Cualquier tecla para continuar")
+                            print("Presiona Cualquier tecla para continuar")
                             break
                         break
                 else:
@@ -247,7 +247,7 @@ class TresEnRaya:
                         self.partida()
                     else:
                         print("Hasta Pronto!")
-                        input("Presiona Cualquier tecla para continuar")
+                        print("Presiona Cualquier tecla para continuar")
                         break
                     break
                     
