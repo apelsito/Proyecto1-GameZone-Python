@@ -73,16 +73,53 @@ class Ahorcado:
 
 
     def obtener_lista_entradas(self,entrada, n_veces_encontrada):
+        """
+        Genera una lista que contiene la entrada repetida un número específico de veces.
+
+        Args:
+        entrada (any): El valor que se desea repetir en la lista.
+        n_veces_encontrada (int): El número de veces que se desea que la entrada aparezca en la lista.
+
+        Returns:
+        list: Una lista que contiene la entrada repetida `n_veces_encontrada` veces.
+        """
         obtencion = [entrada] * n_veces_encontrada
         return obtencion
 
     def reemplazar_texto(self,texto_og, lista_encontradas, posiciones):
+        """
+        Reemplaza partes de un texto original en posiciones específicas con elementos de una lista dada.
+
+        Args:
+            texto_og (str): El texto original que será modificado.
+            lista_encontradas (list): Lista de valores que reemplazarán las partes del texto original.
+            posiciones (list): Lista de posiciones (índices) en las que se realizarán los reemplazos en el texto.
+
+        Returns:
+            str: El texto modificado con las entradas de `lista_encontradas` en las posiciones especificadas.
+        """
         texto_lista = list(texto_og)  # Convertimos el string en una lista para manipularlo
         for i, pos in enumerate(posiciones):
             texto_lista[pos * 2] = lista_encontradas[i]  # Al tener los guiones con espacio, hay que tener en cuenta el doble
         return "".join(texto_lista)
         
     def ahorcado(self):
+        """
+        Inicia un juego interactivo del clásico "Ahorcado", donde el jugador debe adivinar una palabra letra por letra.
+
+        El juego selecciona una palabra al azar de la lista `self.palabras_ahorcado`. El jugador tiene un número limitado 
+        de intentos para adivinar la palabra antes de que se pierda. El juego se puede detener en cualquier momento escribiendo "stop". 
+        Si el jugador adivina todas las letras correctamente antes de agotar los intentos, gana. 
+        En caso de perder, se le muestra la palabra correcta y se le ofrece la opción de jugar otra vez.
+
+        Args:
+            None
+
+        Returns:
+            None: Este método no devuelve ningún valor, pero imprime el progreso y el estado del juego, y permite al jugador interactuar 
+            mediante la consola.
+        """
+
         textogame = pyfiglet.figlet_format(f"GAME ON!")
         print(Fore.CYAN + textogame + Fore.RESET)
         print("")
@@ -157,6 +194,18 @@ class Ahorcado:
                 print(Fore.YELLOW + f"Pulsa cualquier tecla para salir."+Fore.RESET)
 
     def menu(self):
+        """
+        Muestra el menú principal e introduce al jugador a las reglas del juego del Ahorcado. 
+
+        Explica brevemente las reglas del juego, incluyendo cómo adivinar letras, el número de intentos permitidos, y 
+        cómo salir del juego escribiendo "stop". Al final, permite al jugador comenzar el juego presionando una tecla.
+
+        Args:
+            None
+
+        Returns:
+            None: Este método no devuelve ningún valor, solo imprime el menú y llama al método `ahorcado` para iniciar el juego.
+        """
         textostop = pyfiglet.figlet_format(f"AHORCADO")
         print(Fore.MAGENTA + textostop)
         print(Fore.YELLOW + f"Bienvenido al Ahorcado!")

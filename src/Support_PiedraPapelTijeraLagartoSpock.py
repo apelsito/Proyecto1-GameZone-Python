@@ -14,6 +14,19 @@ class PiedraPapelTijeraLagartoSpock():
         ]
 
     def buscar_en_diccionario(self,entrada,dickcionario):
+        """
+        Busca una entrada en un diccionario.
+
+        Este método intenta acceder a un valor en el diccionario utilizando la entrada proporcionada como clave. 
+        Si la clave existe, devuelve `True`. Si no existe, captura la excepción y devuelve `False`.
+
+        Args:
+            entrada (str): La clave que se desea buscar en el diccionario.
+            dickcionario (dict): El diccionario en el que se realiza la búsqueda.
+
+        Returns:
+            bool: `True` si la entrada se encuentra en el diccionario; de lo contrario, `False`.
+        """
         try:
             dickcionario[entrada]
             return True
@@ -21,6 +34,24 @@ class PiedraPapelTijeraLagartoSpock():
             return False
 
     def ver_ganador_o_empate(self,user,machinery,versus):
+        """
+        Determina el ganador de un enfrentamiento entre el usuario y la máquina.
+
+        Este método evalúa las selecciones del usuario y de la máquina para determinar el resultado de un juego. 
+        Utiliza un diccionario de interacciones (`versus`) para verificar si la selección del usuario gana 
+        o pierde contra la selección de la máquina. Devuelve un código que indica el resultado.
+
+        Args:
+            user (str): La selección del usuario (por ejemplo, "piedra", "papel", "tijera").
+            machinery (str): La selección de la máquina (por ejemplo, "piedra", "papel", "tijera").
+            versus (list): Una lista de listas que contiene diccionarios de interacciones entre selecciones.
+
+        Returns:
+            int: 
+                - `0` si el usuario gana a la máquina,
+                - `1` si la máquina gana al usuario,
+                - `-1` si no se determina un ganador (por ejemplo, en caso de empate).
+        """
         seleccion_usuario = user
         seleccion_maquina = machinery
         diccionario_usuario = versus[0][0][seleccion_usuario]
@@ -36,6 +67,18 @@ class PiedraPapelTijeraLagartoSpock():
 
 
     def batalla(self):
+        """
+        Inicia el juego de Piedra, Papel, Tijera, Lagarto, Spock.
+
+        Este método permite al usuario jugar una serie de rondas contra una inteligencia artificial. 
+        El usuario selecciona el número de rondas (máximo 5) y elige entre las opciones disponibles 
+        (Piedra, Papel, Tijera, Lagarto o Spock). Después de cada ronda, se determina el resultado 
+        y se muestra al usuario el número de victorias y derrotas al final del juego.
+
+        Returns:
+            None: Este método no devuelve un valor, pero imprime en pantalla el resultado del juego
+            y la puntuación final del usuario.
+        """
         init(autoreset=True)
         titulo = pyfiglet.figlet_format("Pi.Pa.Ti.La.Sp", font="slant")
         print(Fore.GREEN + titulo)

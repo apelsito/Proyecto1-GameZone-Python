@@ -5,7 +5,26 @@ from colorama import init, Fore
 class TresEnRaya:
     def __init__(self) -> None:
         pass
+
+
     def tablero_partida(self,tablero):
+        """
+        Crea una representación visual del tablero de juego.
+
+        Este método toma el estado actual del tablero y lo convierte en una 
+        representación en forma de cadena, que se puede imprimir en la consola. 
+        Se utiliza principalmente para mostrar el estado del juego en 
+        juegos de mesa como el Tres en Raya.
+
+        Args:
+            tablero (list): Una lista que contiene los elementos del tablero, 
+                            donde cada elemento representa una celda (por ejemplo, 
+                            "X", "O" o un espacio vacío).
+
+        Returns:
+            str: Una cadena que representa el tablero en un formato legible, 
+                con líneas y separaciones que indican las celdas del juego.
+        """ 
         # Crear una representación en forma de cadena del tablero
         tablero_str = f" {tablero[0]} | {tablero[1]} | {tablero[2]} \n"
         tablero_str += "---+---+---\n"
@@ -14,9 +33,23 @@ class TresEnRaya:
         tablero_str += f" {tablero[6]} | {tablero[7]} | {tablero[8]} \n"
         return tablero_str
 
-
-
     def check_filas(self,tablero_actual):
+        """
+        Verifica si hay un ganador en las filas del tablero de Tres en Raya.
+
+        Este método comprueba las filas del tablero actual para determinar si 
+        algún jugador ha conseguido alinear tres de sus símbolos ("O" o "X") en 
+        una fila. Devuelve un mensaje indicando el resultado de la verificación.
+
+        Args:
+            tablero_actual (list): Una lista que representa el estado actual 
+                                del tablero, donde cada elemento es un 
+                                símbolo del jugador ("O" o "X") o un espacio vacío.
+
+        Returns:
+            str: Un mensaje que indica si el jugador ha ganado, ha perdido 
+                o si no hay ganador en las filas.
+        """
         resultado_filas = ""
         if tablero_actual[0] == "O" and tablero_actual[1] == "O" and tablero_actual[2] == "O":
             resultado_filas = f"Has Ganado! Tres en raya en fila 1!"
@@ -41,6 +74,22 @@ class TresEnRaya:
         return resultado_filas
 
     def check_columnas(self,tablero_actual):
+        """
+        Verifica si hay un ganador en las columnas del tablero de Tres en Raya.
+
+        Este método comprueba las columnas del tablero actual para determinar si 
+        algún jugador ha conseguido alinear tres de sus símbolos ("O" o "X") en 
+        una columna. Devuelve un mensaje indicando el resultado de la verificación.
+
+        Args:
+            tablero_actual (list): Una lista que representa el estado actual 
+                                del tablero, donde cada elemento es un 
+                                símbolo del jugador ("O" o "X") o un espacio vacío.
+
+        Returns:
+            str: Un mensaje que indica si el jugador ha ganado, ha perdido 
+                o si no hay ganador en las columnas.
+        """
         resultado_filas = ""
         if tablero_actual[0] == "O" and tablero_actual[3] == "O" and tablero_actual[6] == "O":
             resultado_filas = f"Has Ganado! Tres en raya en columna 1!"
@@ -65,6 +114,23 @@ class TresEnRaya:
         return resultado_filas
 
     def check_diagonales(self,tablero_actual):
+        """
+        Verifica si hay un ganador en las diagonales del tablero de Tres en Raya.
+
+        Este método comprueba las dos diagonales del tablero actual para 
+        determinar si algún jugador ha conseguido alinear tres de sus 
+        símbolos ("O" o "X") en una diagonal. Devuelve un mensaje indicando 
+        el resultado de la verificación.
+
+        Args:
+            tablero_actual (list): Una lista que representa el estado actual 
+                                del tablero, donde cada elemento es un 
+                                símbolo del jugador ("O" o "X") o un espacio vacío.
+
+        Returns:
+            str: Un mensaje que indica si el jugador ha ganado, ha perdido 
+                o si no hay ganador en las diagonales.
+        """
         resultado_filas = ""
         if tablero_actual[0] == "O" and tablero_actual[4] == "O" and tablero_actual[8] == "O":
             resultado_filas = f"Has Ganado! Tres en raya en diagonal 1!"
@@ -84,6 +150,24 @@ class TresEnRaya:
         return resultado_filas
 
     def partida(self):
+        """
+        Inicia una partida de Tres en Raya entre un jugador humano y una IA.
+
+        Este método configura el tablero inicial y permite al jugador humano 
+        introducir sus movimientos. Después de cada movimiento del jugador, 
+        la IA realiza su propio movimiento aleatorio. La partida continúa 
+        hasta que un jugador gane, se produzca un empate o el jugador 
+        decida terminar la partida.
+
+        El flujo de la partida incluye la visualización del tablero, 
+        la validación de entradas del usuario y la verificación de condiciones 
+        de victoria en filas, columnas y diagonales.
+
+        Returns:
+            None: Este método no devuelve un valor. En su lugar, imprime el 
+                estado de la partida y los mensajes correspondientes en 
+                función del resultado de la partida.
+        """
         tablero_inicial = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
         startable=self.tablero_partida(tablero_inicial)
         user_tries = 0
@@ -255,12 +339,27 @@ class TresEnRaya:
             print(f"Error Fatal")
 
     def iniciarTTT(self):
-            textostop = pyfiglet.figlet_format(f"TRES EN RAYA")
-            print(Fore.MAGENTA + textostop)
-            print(Fore.YELLOW + f"Bienvenido al Tres en Raya!")
-            print(Fore.RESET + f"Las reglas son sencillas:")
-            print(f"1º Pon el número donde quieras colocarte")
-            print(f"2º Haz tres en raya, ya sea en columna, fila o diagonal")
-            input(Fore.YELLOW + f"Estás listo? pulsa cualquier tecla para empezar"+Fore.RESET)
-            self.partida()
-            return
+        """
+        Inicia el juego de Tres en Raya.
+
+        Este método imprime un mensaje de bienvenida y las instrucciones del juego 
+        para el jugador. Se utiliza la biblioteca `pyfiglet` para mostrar el 
+        título del juego en un formato artístico y se utilizan colores para 
+        mejorar la experiencia visual.
+
+        Después de mostrar las reglas del juego, el método espera que el jugador 
+        pulse una tecla para comenzar la partida, llamando a la función `partida`.
+
+        Returns:
+            None: Este método no devuelve un valor. En su lugar, inicia la 
+                partida de Tres en Raya.
+        """
+        textostop = pyfiglet.figlet_format(f"TRES EN RAYA")
+        print(Fore.MAGENTA + textostop)
+        print(Fore.YELLOW + f"Bienvenido al Tres en Raya!")
+        print(Fore.RESET + f"Las reglas son sencillas:")
+        print(f"1º Pon el número donde quieras colocarte")
+        print(f"2º Haz tres en raya, ya sea en columna, fila o diagonal")
+        input(Fore.YELLOW + f"Estás listo? pulsa cualquier tecla para empezar"+Fore.RESET)
+        self.partida()
+        return
