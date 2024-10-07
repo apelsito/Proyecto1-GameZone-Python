@@ -1,79 +1,72 @@
 # 🕹️ Game Zone 👾
-¿Alguna vez has estado en casa deseando ir a las recreativas? 
-Tal vez la distancia, el cansancio o simplemente que se te ha hecho tarde (como me está pasando ahora mientras redacto este README…). Bueno pues, ¡No busques más! **Game Zone** es el programa que estabas buscando.
+Game Zone es una plataforma de juegos interactivos diseñada para brindar entretenimiento clásico en un entorno accesible y moderno. 
+
+Desde juegos icónicos como el Ahorcado hasta versiones mejoradas de Piedra, Papel, Tijera, Lagarto, Spock, Game Zone es ideal para quienes buscan una experiencia divertida desde casa.
+
+Actualmente en desarrollo, ya cuenta con varias opciones listas para jugar, con más funcionalidades por venir.
 # Descripción 📖
-**Game Zone** Resuelve la imperiosa necesidad de jugar, que desde tiempos inmemorables convive con nosotros, aún en fase de desarrollo Game Zone ya cuenta con:
 
-- **Ahorcado**: Un juego de toda la vida 🎮. Deberás encontrar la palabra, para ello, deberás introducir letra por letra. Tienes 5 intentos ⏳. Si fallas, el pequeño Timmy 🐶, bueno, digamos que se quedará dormido 🥴.
+**Game Zone** se ha creado para satisfacer esa necesidad universal de jugar y relajarse. Aunque aún está en fase de desarrollo, el proyecto ya ofrece los siguientes juegos:
 
-- **Tres en Raya** : El clásico juego de estrategia ⚔️ que siempre nos divierte. Coloca tu símbolo en el tablero 🟡🟠 y compite contra la IA 🤖. El objetivo es simple: ¡consigue alinear tres en fila! 🏆 Pero ten cuidado, porque tu oponente también está en la búsqueda de la victoria. ¡Que gane el mejor! ✨
+- **Ahorcado**: El clásico juego donde el objetivo es adivinar la palabra secreta. Tienes 5 intentos para lograrlo. Si fallas, perderás la partida.
 
-- **Piedra, Papel, Tijera, Lagarto, Spock** ✋📄: ¡La versión mejorada del clásico! 💥 Este juego divertido y lleno de sorpresas te permitirá elegir entre cinco opciones para derrotar a tu oponente 🤼. ¿Piedra aplastará a las tijeras? 🪨✂️ ¿O quizás el lagarto devore al Spock? 🦎🖖 Elige sabiamente y conviértete en el campeón de esta batalla de mentes 🏆✨.
+- **Tres en Raya**: Compite contra la IA en este juego de estrategia. Coloca tus símbolos en el tablero y trata de alinear tres en fila antes que tu oponente.
 
-- **Preguntados** ❓🎓: Enfréntate a desafiantes preguntas de diversas categorías 📚💡 y demuestra que eres el más inteligente del grupo. 💪🤓 Responde correctamente para sumar puntos y avanzar, pero cuidado, ¡no te equivoques! 🚫🛑 Si es demasiado para tí, siempre puedes abandonar con un simple “stop” 🛑.
+- **Piedra, Papel, Tijera, Lagarto, Spock**: La versión extendida del tradicional juego. Cinco opciones diferentes hacen que cada partida sea más impredecible y divertida.
 
-- **Funcionalidad Oculta!** 🕵️‍♂️🔍: Mantén los ojos bien abiertos 👀, hay una modalidad oculta, efectivamente!! un easter egg 🥚🔐, cuando lo encuentres deleitate de los visuales que te hemos ofrecido
-
-- Y para los más valientes...🤫 encuentra el secreto en el código, créeme, es muy obvio 🧩🤯
+- **Preguntados**: Pon a prueba tus conocimientos con preguntas de distintas categorías. Cada respuesta correcta te acercará a la victoria.
 
 # 🗂️ Estructura del código 📂
-Organizado de forma que cualquiera lo pueda entender encontramos la siguiente Estructura
+El código de Game Zone está organizado de manera clara y fácil de seguir, con una estructura modular que permite la escalabilidad y el mantenimiento del proyecto.
 ## src ⛲
-
-- **SupportTresEnRaya.py**: Módulo del Juego Tres en Raya.
-- **Support_Ahorcado.py**: Módulo del Juego Ahorcado.
-- **Support_MainMenu.py**: Módulo del menú principal.
-- **Support_PiedraPapelTijeraLagartoSpock.py**: Módulo del Juego Piedra, Papel, Tijera, Lagarto, Spock.
-- **Support_Preguntados.py**: Módulo del juego Preguntados.
-
+- **SupportTresEnRaya.py**: Módulo que contiene la lógica del juego Tres en Raya.
+- **Support_Ahorcado.py**: Módulo que maneja las reglas y el flujo del Ahorcado.
+- **Support_MainMenu.py**: Módulo que gestiona el menú principal del programa.
+- **Support_PiedraPapelTijeraLagartoSpock.py**: Módulo con la lógica para Piedra, Papel, Tijera, Lagarto, Spock.
+- **Support_Preguntados.py**: Módulo encargado del juego Preguntados.
 ## .gitignore ♻️
-Archivo usado para evitar molestos archivos que no interesan a nadie *(Son pruebas de como defraudo a hacienda.)*
+Archivo utilizado para excluir del repositorio archivos innecesarios.
 
 ## README.md 📑
-Es esta maravilla audiovisual✨, bueno, no tiene audio, así que supongo que es una maravilla visual.🌟 
+Este archivo que estás leyendo, proporciona información sobre el proyecto.🌟 
 
 ## main.py
-Es lo que yo llamo un mal jefe 👎😤, se atribuye todos los méritos 🏆, pero lo único que hace es llamar a otro que le hace el trabajo 🤷‍♂️.
+El archivo principal que sirve como punto de entrada para el programa. Simplemente gestiona la ejecución de los distintos módulos.
 
 # Instalación y Requisitos 🛠️ 
-Para disfrutar de la magia 🎨✨, asegúrate de tener lo siguiente:
+Para ejecutar Game Zone correctamente ✨, asegúrate de cumplir con los siguientes requisitos:
+
 ## Requisitos Previos
-- **Python 3.11.9 🐍**: Asegúrate de tener esta versión o la más reciente instalada.
-- **Librería pyfiglet📚**: Para instalarla ejecuta el siguiente comando
+- **Python 3.11.9 🐍**: Debes tener instalada esta versión o una más reciente.
+- **Librería pyfiglet📚**: Para instalar esta librería, ejecuta el siguiente comando:
 ```python
 pip install pyfiglet
 ```
 - **Librería colorama**🎨: Responsable de darle color a la terminal.
 - **Librería time**⏳: Encargada de animar el logo inicial.
-- **Librería threading**🧵: ¡Sí, lo que oyes! Esto es una aplicación multihilo.
+- **Librería threading**🧵: Utilizada para la gestión de hilos en la aplicación.
 
 # Conclusiones 🏁
-Crear Game Zone ha sido una experiencia enriquecedora que me ha permitido crecer como desarrollador y enfrentar nuevos desafíos. A través de este proyecto:
+Game Zone ha sido un proyecto enriquecedor que me permitió mejorar mis habilidades como desarrollador. A lo largo de este proceso:
 
-- **Aprendí a gestionar el tiempo**⏳: La planificación de cada módulo y la implementación de la lógica de los juegos me han enseñado a administrar mejor mis recursos y tiempos de trabajo.
-
-- **He subido de nivel mi programación**💻: Cada juego presentó su propio conjunto de retos que me obligaron a investigar y aplicar nuevas técnicas.
-
-- **Mejoré en la resolución de problemas** 🧠: Cada error y cada bug fueron oportunidades de aprendizaje... y de partir la mesa 😅
-
-- **Aumento en la tolerancia a la frustración** 😤: Aprendí a manejar la frustración que surge cuando las cosas no salen como se planean. Cada error y obstáculo en el desarrollo me enseñó a ser paciente y a buscar soluciones creativas.
+- **Gestión del tiempo**: Aprendí a administrar mejor mi tiempo, planificando cada módulo de manera eficiente.
+- **Mejora en la programación**: Cada juego planteó nuevos retos, lo que me permitió aprender y aplicar nuevas técnicas.
+- **Solución de problemas**: Los errores y bugs fueron oportunidades para aprender y mejorar la lógica del código.
+- **Tolerancia a la frustración**: Este proyecto me enseñó a ser más paciente y a encontrar soluciones creativas ante obstáculos.
 
 # Próximos Pasos 🐾
-- Mejorar la IA de Alto Rendimiento, para ofrecer un reto aún mayor.
-- Añadir Hundir la flota
-- Añadir un sistema de audio, para ofrecer efectos de sonido
+- Mejorar la IA para ofrecer un reto más complejo a los jugadores.
+- Añadir nuevos juegos como Hundir la Flota.
+- Incorporar efectos de sonido para una experiencia más inmersiva.
+- Añadir control de errores más extenso en el menú de inicio
 
 # Contribuciones 🤝
-Si deseas contribuir, eres libre de hacerlo, se aceptan Contribuciones al código 👨‍💻, a mi bolsillo 💸 y también a mi estado emocional *(me siento solo)* 😔
+Si estás interesado en contribuir al desarrollo de Game Zone, ya sea a nivel de código, diseño o cualquier otra área, Puedes contactar conmigo a través de mis perfiles en línea.👨‍💻
 
 # 👨‍💻 Autores y Agradecimientos 💖
-**Gonzalo Ruipérez (aka Apple)**: - (https://github.com/apelsito) - 
+**Gonzalo Ruipérez Ojea**: - (https://github.com/apelsito) - 
 
 Puedes encontrarme en:
 - https://www.linkedin.com/in/gonzaloruiperez/
 
-Quiero Agradecer a mi TDAH por hacerme la persona que soy, con sus ventajas y desventajas, me hace ser la persona que soy. 💖
- 
-También a mis profesores, por la calidad de la enseñanza y por la caña que nos meten, supongo que al final del día me gusta sufrir y vivir contrarreloj 🕒
-
-Y por último, pero no menos importante, las anfetas 💊, sin ellas no podría desplegar mi potencial (*son con receta médica*)
+Quiero Agradecer a mis profesores,💖 por la calidad de la enseñanza y por la caña que nos meten, supongo que al final del día me gusta sufrir y vivir contrarreloj🕒
